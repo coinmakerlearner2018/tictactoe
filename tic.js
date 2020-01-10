@@ -80,8 +80,6 @@ var startGame = () => {
 //startGame Button event
 startButton.addEventListener('click', startGame)
 
-
-
 // Main Function for Game play,  Switch user by switchCounter 1/0,  0 = O, 1 = X
 
 function ox(){
@@ -97,7 +95,6 @@ function ox(){
             // store id to parent to track user 
             this.dataset.id = switchCounter
 
-                
             
             // pushing grid number into an array for Vaildation
             listofSubBoxes.forEach(function(item){
@@ -113,51 +110,9 @@ function ox(){
                     
                 }
                 })
-            
+                              
 
-                    
-
-                operator.isWinOrDraw(switchCounter, counterO, winningCobo, gameCounter, listofSubBoxes, ox) 
-
-
-            // //winning counter for O
-            // winningCombine.forEach( (item) => {
-            //     // For winner O
-            //         let winningCounter = 0
-            //         let winningNumber = 0
-            //         for(let i = 0; i < counterO.length; i++){
-            //                 winningNumber = item.indexOf(counterO[i])
-            //                 if(winningNumber !== -1){
-            //                     winningCounter++
-            //                 }
-            //         }
-            //         //It must be equal 1 set of 3 numbers winning combination 
-            //         if(winningCounter === 3){
-            //             alert(`O is the winner`)
-
-            //             winner = true
-            //         //Remove grid event listener
-            //         listofSubBoxes.forEach ( 
-            //             function(item){item.removeEventListener('click', ox)
-                   
-            //             })
-
-            //         }
-
-            // })
-
-            //     //draw when draw 
-            //     if(winner === 0 && gameCounter === 8){
-            //         alert(`DRAW`)
-
-            //             winner = true
-            //         //Remove grid event listener
-            //         listofSubBoxes.forEach ( 
-            //             function(item){item.removeEventListener('click', ox)
-                   
-            //             })
-
-            //     }
+            operator.isWinOrDraw(switchCounter, counterO, winningCobo, gameCounter, listofSubBoxes, ox) 
           
             switchCounter++
             gameCounter++
@@ -180,60 +135,26 @@ function ox(){
 
                     let gridNumber = Number(item.className)
                     counterX.push(gridNumber)
-                }
+                    }
                 
             
                 })
                 
+                operator.isWinOrDraw(switchCounter, counterX, winningCobo, gameCounter, listofSubBoxes, ox) 
+
                 print(counterX)
 
                 print(`gameCounter ${gameCounter}`)
 
                 //winning counter for O
-                winningCobo.forEach( (item) => {
-                // For winner O
-                    let winningCounter = 0
-                    let winningNumber = 0
-                    for(let i = 0; i < counterX.length; i++){
-                            winningNumber = item.indexOf(counterX[i])
-                            if(winningNumber !== -1){
-                                winningCounter++
-                            }
-                    }
+              
+        
 
-                    if(winningCounter === 3){
-                        alert(`X is the winner`)
-
-                        winner = true
-                        
-                         //Remove grid event listener
-                    listofSubBoxes.forEach ( 
-                        function(item){item.removeEventListener('click', ox)
-                   
-                        })
-                    }
-
-            })
-
-            
-            //draw
-            if(winner === 0 && gameCounter === 8){
-                alert(`DRAW`)
-
-                    winner = true
-                //Remove grid event listener
-                listofSubBoxes.forEach ( 
-                    function(item){item.removeEventListener('click', ox)
-               
-                    })
-
-            }
-                       
-
-            switchCounter--
-            gameCounter++
+                switchCounter--
+                gameCounter++
             
         }
+
 
 }
 

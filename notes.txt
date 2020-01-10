@@ -1,0 +1,42 @@
+
+wait for permission
+await function
+
+access
+capture picture
+
+
+Canvas -> draw the camera px to a div
+show the photo
+
+
+// ask 
+Web design & css
+Hiding pages
+
+
+minimax
+
+each time I play 
+
+
+localstorage is a special 
+
+init
+localstorage.setItem() 
+
+reload the page 
+localstorage.reload()
+
+localstorage.clear() 
+
+HTML
+--fieldSet
+
+CSS animista
+https://animista.net/play/basic/rotate
+
+assigning obj
+
+this is not a copy
+var obj = Aobj
