@@ -115,9 +115,106 @@ function ox(){
                 })
             
 
+            print(`gameCounter ${gameCounter}`)
+            gameCounter++
+            operator.isWinOrDraw(switchCounter, counterO, winningCobo, gameCounter, listofSubBoxes, ox) 
+            
+            print(`gameCounter ${gameCounter}`)
+
+            switchCounter++
+            
+
+        }else if(this.childNodes.length === 0 && switchCounter === 1){
+            // switchCounter = 1 , Need A message div who's turn
+            let newSpan = this.appendChild(spanTag.cloneNode())
+            newSpan.classList.add("x")
+            this.dataset.id = switchCounter
+            
+
+            // print(this.value)
+            // print(this.className)
+            listofSubBoxes.forEach( (item) => print(`${item.dataset.id} ${item.className}  `) )
+
+             // pushing grid number into an array for check
+            listofSubBoxes.forEach(function(item){
+                if(item.dataset.id !== 'reset' && Number(item.dataset.id) !== 0  && counterX.indexOf(Number(item.className)) === -1){
+
+                    let gridNumber = Number(item.className)
+                    counterX.push(gridNumber)
+                }
+                
+            
+                })
+                
+            print(counterX)
+
+                
+            print(`gameCounter ${gameCounter}`)
+            gameCounter++
+            operator.isWinOrDraw(switchCounter, counterX, winningCobo, gameCounter, listofSubBoxes, ox) 
+            
+            print(`gameCounter ${gameCounter}`)
+
+            switchCounter--
+                       
+            
+        }
+
+}
+
+//for printing too lazy for console.log
+function print(item){ console.log(item)}
+     
+
+
+
+
+                //winning counter for O
+                
+            //     winningCobo.forEach( (item) => {
+            //     // For winner O
+            //         let winningCounter = 0
+            //         let winningNumber = 0
+            //         for(let i = 0; i < counterX.length; i++){
+            //                 winningNumber = item.indexOf(counterX[i])
+            //                 if(winningNumber !== -1){
+            //                     winningCounter++
+            //                 }
+            //         }
+
+            //         if(winningCounter === 3){
+            //             alert(`X is the winner`)
+
+            //             winner = true
+                        
+            //              //Remove grid event listener
+            //         listofSubBoxes.forEach ( 
+            //             function(item){item.removeEventListener('click', ox)
+                   
+            //             })
+            //         }
+
+            // })
+
+            
+            // //draw
+            // if(winner === 0 && gameCounter === 8){
+            //     alert(`DRAW`)
+
+            //         winner = true
+            //     //Remove grid event listener
+            //     listofSubBoxes.forEach ( 
+            //         function(item){item.removeEventListener('click', ox)
+               
+            //         })
+
+            // }
+
+
+            
                     
 
-                operator.isWinOrDraw(switchCounter, counterO, winningCobo, gameCounter, listofSubBoxes, ox) 
+          
 
 
             // //winning counter for O
@@ -158,85 +255,3 @@ function ox(){
             //             })
 
             //     }
-          
-            switchCounter++
-            gameCounter++
-
-
-        }else if(this.childNodes.length === 0 && switchCounter === 1){
-            // switchCounter = 1 , Need A message div who's turn
-            let newSpan = this.appendChild(spanTag.cloneNode())
-            newSpan.classList.add("x")
-            this.dataset.id = switchCounter
-            
-
-            // print(this.value)
-            // print(this.className)
-            listofSubBoxes.forEach( (item) => print(`${item.dataset.id} ${item.className}  `) )
-
-             // pushing grid number into an array for check
-            listofSubBoxes.forEach(function(item){
-                if(item.dataset.id !== 'reset' && Number(item.dataset.id) !== 0  && counterX.indexOf(Number(item.className)) === -1){
-
-                    let gridNumber = Number(item.className)
-                    counterX.push(gridNumber)
-                }
-                
-            
-                })
-                
-                print(counterX)
-
-                print(`gameCounter ${gameCounter}`)
-
-                //winning counter for O
-                winningCobo.forEach( (item) => {
-                // For winner O
-                    let winningCounter = 0
-                    let winningNumber = 0
-                    for(let i = 0; i < counterX.length; i++){
-                            winningNumber = item.indexOf(counterX[i])
-                            if(winningNumber !== -1){
-                                winningCounter++
-                            }
-                    }
-
-                    if(winningCounter === 3){
-                        alert(`X is the winner`)
-
-                        winner = true
-                        
-                         //Remove grid event listener
-                    listofSubBoxes.forEach ( 
-                        function(item){item.removeEventListener('click', ox)
-                   
-                        })
-                    }
-
-            })
-
-            
-            //draw
-            if(winner === 0 && gameCounter === 8){
-                alert(`DRAW`)
-
-                    winner = true
-                //Remove grid event listener
-                listofSubBoxes.forEach ( 
-                    function(item){item.removeEventListener('click', ox)
-               
-                    })
-
-            }
-                       
-
-            switchCounter--
-            gameCounter++
-            
-        }
-
-}
-
-//for printing too lazy for console.log
-function print(item){ console.log(item)}
-     

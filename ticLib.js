@@ -28,7 +28,7 @@ function elementsEventListenerHandler(){
         groupEventListenerRemover: (collectionOfElements, fn) => {
                     collectionOfElements.forEach ( 
                         function(element){
-                            element.addEventListener('click', fn)
+                            element.removeEventListener('click', fn)
                         }
                     )
                 }
@@ -41,9 +41,11 @@ function elementsEventListenerHandler(){
     
 
 function operatorFn(){
+        let remover = elementsEventListenerHandler()
+
     return {
         ...elementsEventListenerHandler(),
-        randomPlayerNum: () => {
+                randomPlayerNum: () => {
             let ranNum = Math.round((Math.random() * 10) + 0.5);
             return ranNum%2
             },
@@ -52,11 +54,14 @@ function operatorFn(){
             },
             
        isWinOrDraw: (playerNum, playerSelectedGrids, wCombo, numberOfGame, boxElement, fn) => {
+                let win = false
             wCombo.forEach( (setOfCombo) => {
+
+                console.log(`${win} win var`)
 
                 let winningCounter = 0
                 let winningNumber = 0
-                var win = 0
+                
                 
 
                 for(let i = 0; i < playerSelectedGrids.length; i++){
@@ -73,20 +78,23 @@ function operatorFn(){
                     alert(`O is the winner`)
                     win = true
                     //
-                    this.groupEventListenerRemover(boxElement, fn)
+                    remover.groupEventListenerRemover(boxElement, fn)
                 }else if (winningCounter === 3 && playerNum === 1){
                     alert(`X is the winner`)
                     win = true
                     //
-                    groupEventListenerRemover(boxElement, fn)
-
-                }else if(win === 0 && numberOfGame === 8){
-                    alert(`DRAW`)
-                    this.groupEventListenerRemover(boxElement, fn)
-                        }
+                    remover.groupEventListenerRemover(boxElement, fn)
+                            //winningCounter !== 3
+                }
 
             })
+                if(win === false && numberOfGame === 9){
+                    // When player wins at the end, it will show draw but actually winning (fix bug)
 
+                    alert(`DRAW`)
+                    win = true
+                    remover.groupEventListenerRemover(boxElement, fn)
+                        }
 
        }
     }
