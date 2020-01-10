@@ -25,24 +25,12 @@ var gameCounter = 0;
 var winner = 0
 
 
-function cleanerFn(){
-    return {
-        elementsIdReset: (collectionOfElements) => {
-            collectionOfElements.forEach( (element) => element.dataset.id = 'reset')        
-
-        }, 
-        emptyChildElements: (collectionOfElements) => {
-            collectionOfElements.forEach( (element) => $(element).empty() )           
-        }
-            
-    }
-
-}
-
-// alert(`Please press START button to start`)
-
-//Clean child element function 
+//Cleaner
 var cleaner = cleanerFn()
+
+//Handling event listener in a group
+var groupListener = elementsEventListenerHandler()
+
 
 //reset Event, addEventListener will execute function immediately if you pass a variable
 // you must wrap another function outside to not immidately execute
@@ -51,9 +39,9 @@ resetHalButton.addEventListener('click', function() {
             //Make sure all global variables are clean & grid is clean
             counterO = []
             counterX = []
-            cleaner.emptyChildElements(listofSubBoxes)
             gameCounter = 0
 
+            cleaner.emptyChildElements(listofSubBoxes)
             // Draw counter variable
             winner = 0
                         
@@ -61,10 +49,7 @@ resetHalButton.addEventListener('click', function() {
             cleaner.elementsIdReset(listofSubBoxes)
 
             //Re establish grid event listener
-            listofSubBoxes.forEach ( 
-                function(item){item.addEventListener('click', ox)
-           
-    })
+            groupListener.elementsEventListenerAdder(listofSubBoxes, ox)
 })
 
 //startGame function  -> 1. Clean the grid, randomly pick player & message who starts
@@ -84,18 +69,10 @@ var startGame = () => {
         cleaner.elementsIdReset(listofSubBoxes)
         
         //Re establish grid event listener
-        listofSubBoxes.forEach ( 
-            function(item){item.addEventListener('click', ox)
-                    
-                        })
+        groupListener.elementsEventListenerAdder(listofSubBoxes, ox)
+
         // randomly pick player
-        let ranNum = Math.round((Math.random() * 10) + 0.5);
-        switchCounter = ranNum % 2
-        if(switchCounter === 0){
-            alert('O start first')
-            }else{
-            alert('X start first')
-            }
+        groupListener.elementsEventListenerAdder(listofSubBoxes, ox)
             
 } 
 
