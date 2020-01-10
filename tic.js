@@ -10,7 +10,7 @@ var switchCounter = 0;
 //Counter Variable for vaildate winner Draw and how many game
 var counterO = []
 var counterX = []
-const winningCombine = [
+const winningCobo = [
     [0,1,2],
     [3,4,5],
     [6,7,8],
@@ -27,9 +27,9 @@ var winner = 0
 
 //Cleaner
 var cleaner = cleanerFn()
-
 //Handling event listener in a group
 var groupListener = elementsEventListenerHandler()
+var operator = operatorFn()
 
 
 //reset Event, addEventListener will execute function immediately if you pass a variable
@@ -72,7 +72,8 @@ var startGame = () => {
         groupListener.elementsEventListenerAdder(listofSubBoxes, ox)
 
         // randomly pick player
-        groupListener.elementsEventListenerAdder(listofSubBoxes, ox)
+        switchCounter = operator.randomPlayerNum()
+        operator.oOrXFirst(switchCounter)
             
 } 
 
@@ -114,44 +115,49 @@ function ox(){
                 })
             
 
-            //winning counter for O
-            winningCombine.forEach( (item) => {
-                // For winner O
-                    let winningCounter = 0
-                    let winningNumber = 0
-                    for(let i = 0; i < counterO.length; i++){
-                            winningNumber = item.indexOf(counterO[i])
-                            if(winningNumber !== -1){
-                                winningCounter++
-                            }
-                    }
-                    //It must be equal 1 set of 3 numbers winning combination 
-                    if(winningCounter === 3){
-                        alert(`O is the winner`)
+                    
 
-                        winner = true
-                    //Remove grid event listener
-                    listofSubBoxes.forEach ( 
-                        function(item){item.removeEventListener('click', ox)
+                operator.isWinOrDraw(switchCounter, counterO, winningCobo, gameCounter, listofSubBoxes, ox) 
+
+
+            // //winning counter for O
+            // winningCombine.forEach( (item) => {
+            //     // For winner O
+            //         let winningCounter = 0
+            //         let winningNumber = 0
+            //         for(let i = 0; i < counterO.length; i++){
+            //                 winningNumber = item.indexOf(counterO[i])
+            //                 if(winningNumber !== -1){
+            //                     winningCounter++
+            //                 }
+            //         }
+            //         //It must be equal 1 set of 3 numbers winning combination 
+            //         if(winningCounter === 3){
+            //             alert(`O is the winner`)
+
+            //             winner = true
+            //         //Remove grid event listener
+            //         listofSubBoxes.forEach ( 
+            //             function(item){item.removeEventListener('click', ox)
                    
-                        })
+            //             })
 
-                    }
+            //         }
 
-            })
+            // })
 
-                //draw when draw 
-                if(winner === 0 && gameCounter === 8){
-                    alert(`DRAW`)
+            //     //draw when draw 
+            //     if(winner === 0 && gameCounter === 8){
+            //         alert(`DRAW`)
 
-                        winner = true
-                    //Remove grid event listener
-                    listofSubBoxes.forEach ( 
-                        function(item){item.removeEventListener('click', ox)
+            //             winner = true
+            //         //Remove grid event listener
+            //         listofSubBoxes.forEach ( 
+            //             function(item){item.removeEventListener('click', ox)
                    
-                        })
+            //             })
 
-                }
+            //     }
           
             switchCounter++
             gameCounter++
@@ -184,7 +190,7 @@ function ox(){
                 print(`gameCounter ${gameCounter}`)
 
                 //winning counter for O
-            winningCombine.forEach( (item) => {
+                winningCobo.forEach( (item) => {
                 // For winner O
                     let winningCounter = 0
                     let winningNumber = 0
