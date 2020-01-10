@@ -84,7 +84,7 @@ function operatorFn(){
                     win = true
                     //
                     remover.groupEventListenerRemover(boxElement, fn)
-                            //winningCounter !== 3
+                            
                 }
 
             })
